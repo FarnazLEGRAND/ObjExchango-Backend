@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { /objectRepository } from "../repository/object-repository";
-import { checkId } from "../middleware";
+
 import Joi, { object } from "joi";
-import passport from "passport";
+
 import { objectRepository } from "../repository/object-repository";
+import { checkId } from "../../middleware";
 
 
 export const objectController = Router();
@@ -23,13 +24,14 @@ objectController.get('/:id', checkId, async (req,res) => {
     res.json(object);
 });
 
-objectController.post('/', passport.authenticate('jwt',{session:false}), async (req,res) => {
-    const validation = objectValidation.validate(req.body, {abortEarly:false});
-    if(validation.error) {
-        res.status(400).json(validation.error);
+objectController.post('/', async (req,res) => {
+    const object = req.body;
+    const {error} = objectValidation.validate(object);
+    if(error) {
+        res.status(400).json(error);
         return;
     }
-    const object = await objectRepository.persist(req.body);
+    await objectRepository.persist(object);
     res.status(201).json(object);
 });
 

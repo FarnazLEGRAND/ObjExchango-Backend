@@ -23,13 +23,14 @@ borrowController.get('/:id', checkId, async (req,res) => {
     res.json(borrow);
 });
 
-borrowController.post('/', passport.authenticate('jwt',{session:false}), async (req,res) => {
-    const validation = borrowValidation.validate(req.body, {abortEarly:false});
-    if(validation.error) {
-        res.status(400).json(validation.error);
+borrowController.post('/', async (req,res) => {
+    const borrow = req.body;
+    const {error} = borrowValidation.validate(borrow);
+    if(error) {
+        res.status(400).json(error);
         return;
     }
-    const borrow = await borrowRepository.persist(req.body);
+    await borrowRepository.persist(borrow);
     res.status(201).json(borrow);
 });
 
