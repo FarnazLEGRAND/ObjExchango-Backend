@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { Borrow } from "../entities";
+import { Borrow } from "../../entities";
 import { connection } from "./connection";
 
 const collection = connection.db('objexchango').collection<Borrow>('borrow');
@@ -15,5 +15,12 @@ export const borrowRepository = {
         const result = await collection.insertOne(borrow);
         borrow._id = result.insertedId;
         return borrow;
+    },
+    
+    remove(_id:string) {
+        return collection.deleteOne({_id:new ObjectId(_id)});
+    },
+    update(_id:string, borrow:Borrow) {
+        return collection.updateOne({_id:new ObjectId(_id)}, {$set:borrow});
     }
 }

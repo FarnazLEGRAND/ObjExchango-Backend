@@ -9,7 +9,7 @@ import { borrowRepository } from "../repository/borrow-repository";
 export const borrowController = Router();
 
 borrowController.get('/', async (req,res) => {
-    const persons = await borrowRepository.findAll();
+    const borrow = await borrowRepository.findAll();
     res.json(borrow);
 });
 
@@ -33,21 +33,21 @@ borrowController.post('/', passport.authenticate('jwt',{session:false}), async (
     res.status(201).json(borrow);
 });
 
-// borrowController.delete('/:id', checkId, async (req,res)=> {
-//     await borrowRepository.remove(req.params.id);
-//     res.status(204).end();
-// });
+borrowController.delete('/:id', checkId, async (req,res)=> {
+    await borrowRepository.remove(req.params.id);
+    res.status(204).end();
+});
 
 
-// borrowController.patch('/:id', checkId, async (req,res)=> {
-//     const validation = borrowPatchValidation.validate(req.body, {abortEarly:false});
-//     if(validation.error) {
-//         res.status(400).json(validation.error);
-//         return;
-//     }
-//     await borrowRepository.update(req.params.id, req.body);
-//     res.json(req.body);
-// });
+borrowController.patch('/:id', checkId, async (req,res)=> {
+    const validation = borrowPatchValidation.validate(req.body, {abortEarly:false});
+    if(validation.error) {
+        res.status(400).json(validation.error);
+        return;
+    }
+    await borrowRepository.update(req.params.id, req.body);
+    res.json(req.body);
+});
 
 
 const borrowValidation = Joi.object({
