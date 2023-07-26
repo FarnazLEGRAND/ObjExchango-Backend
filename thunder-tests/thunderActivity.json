@@ -8,12 +8,12 @@
         "method": "POST",
         "sortNum": 0,
         "created": "2023-07-26T07:16:20.632Z",
-        "modified": "2023-07-26T07:17:57.117Z",
+        "modified": "2023-07-26T10:18:11.155Z",
         "headers": [],
         "params": [],
         "body": {
             "type": "json",
-            "raw": "{\n  \"borrowDate\":\"2021-01-01\"\n}",
+            "raw": " {\n  \"borrowDate\":\"2023-08-23\",\n  \"returnDate\":\"2023-09-01\",\n   \"borrower\":{\n        \"_id\": \"64c0d8ae02c54f9c8a9f79d0\",\n        \"name\":\"sara\"\n    },\n    \"objet\":{\n      \"title\":\"PLUS PLUS\",\n     \"description\":\"Big Basic Boîte de 100 Pièces Jeux de Construction\",\n     \"category\":\"Jeux de Construction\"\n    \n}\n\n     }",
             "form": []
         },
         "tests": []
@@ -33,6 +33,44 @@
         "body": {
             "type": "json",
             "raw": "{\n    \"name\":\"sima\",\n    \"email\":\"sima@me.com\",\n    \"password\":\"3333\"\n}",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "0ff0e9f6-07cc-4e50-8dfd-896cf2ee34cc",
+        "colId": "history",
+        "containerId": "",
+        "name": "localhost:8000/api/object",
+        "url": "localhost:8000/api/object",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-26T09:35:42.989Z",
+        "modified": "2023-07-26T10:04:25.048Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "    {\n     \"title\":\"Wooden Memory Match Stick Chess Game\",\n     \"description\":\" Hirger Color Memory Chess, Funny Block Board Game,Memory Match Stick Chess Game,Parent-Child Interaction Toy\",\n     \"category\":\"Jeux multi memori,MONTESSORI\",\n     \"owner\":{\n     \"name\":\"sina\",\n     \"_id\": \"64c0d89502c54f9c8a9f79cf\"\n\n             }\n     }",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "32b39006-dfb2-4b3e-b258-3661f38e3378",
+        "colId": "history",
+        "containerId": "",
+        "name": "localhost:8000/api/borrow ",
+        "url": "localhost:8000/api/borrow ",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-26T10:18:02.572Z",
+        "modified": "2023-07-26T10:18:02.572Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": " {\n  \"borrowDate\":\"2023-08-23\",\n  \"returnDate\":\"2023-09-01\",\n   \"borrower\":{\n        \"_id\": \"64c0d8ae02c54f9c8a9f79d0\",\n        \"name\":\"sara\"\n    },\n    \"objet\":{\n      \"title\":\"PLUS PLUS\",\n     \"description\":\"Big Basic Boîte de 100 Pièces Jeux de Construction\",\n     \"category\":\"Jeux de Construction\"\n    \n}\n\n     }",
             "form": []
         },
         "tests": []

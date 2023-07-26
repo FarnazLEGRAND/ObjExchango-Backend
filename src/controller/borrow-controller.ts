@@ -24,7 +24,7 @@ borrowController.get('/:id', checkId, async (req,res) => {
     res.json(borrow);
 });
 
-borrowController.post('/:id', async (req,res) => {
+borrowController.post('/', async (req,res) => {
     const borrow = req.body;
     const {error, value} = borrowValidation.validate(borrow);
     console.log(borrow, value);
@@ -33,6 +33,7 @@ borrowController.post('/:id', async (req,res) => {
         res.status(400).json(error);
         return;
     }
+    
     // await borrowRepository.persist(borrow);
     res.status(201).json(borrow);
 });

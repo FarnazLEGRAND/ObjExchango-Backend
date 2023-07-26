@@ -57,7 +57,7 @@ const objetValidation = Joi.object({
     category: Joi.string().required(),
     owner: Joi.object({
         name: Joi.string().required(),
-        id:Joi.string().required(),
+        _id:Joi.string().required(),
     }).required(),
 });
 
@@ -70,7 +70,7 @@ const objetPatchValidation = Joi.object({
     category: Joi.string().required(),
     owner: Joi.object({
         name: Joi.string().required(),
-        id:Joi.string().required(),
+        _id:Joi.string().required(),
     }).required(),
 });
 
