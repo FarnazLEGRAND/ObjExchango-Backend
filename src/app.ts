@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.static('assets'))
 
 app.use('/api/user', userController);
-app.use('/api/object', objetController);
+app.use('/api/objet', objetController);
 app.use('/api/borrow', borrowController);
 
 app.listen(port, () => {

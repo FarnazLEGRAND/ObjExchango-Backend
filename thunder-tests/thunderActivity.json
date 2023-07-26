@@ -74,5 +74,19 @@
             "form": []
         },
         "tests": []
+    },
+    {
+        "_id": "d01274d5-a96f-440e-867b-4329b72a5b93",
+        "colId": "history",
+        "containerId": "",
+        "name": "localhost:8000/api/objet",
+        "url": "localhost:8000/api/objet",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-26T14:43:07.227Z",
+        "modified": "2023-07-26T14:43:07.227Z",
+        "headers": [],
+        "params": [],
+        "tests": []
     }
 ]
