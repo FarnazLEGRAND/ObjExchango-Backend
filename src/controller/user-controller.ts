@@ -21,8 +21,8 @@ userController.get('/:id', checkId, async (req,res) => {
     }
     res.json(user);
 });
-
-userController.post('/', passport.authenticate('jwt',{session:false}), async (req,res) => {
+//
+userController.post('/', async (req,res) => {
     const validation = userValidation.validate(req.body, {abortEarly:false});
     if(validation.error) {
         res.status(400).json(validation.error);
@@ -32,26 +32,26 @@ userController.post('/', passport.authenticate('jwt',{session:false}), async (re
     res.status(201).json(user);
 });
 
-userController.delete('/:id', checkId, async (req,res)=> {
-    await userRepository.remove(req.params.id);
-    res.status(204).end();
-});
+// userController.delete('/:id', checkId, async (req,res)=> {
+//     await userRepository.remove(req.params.id);
+//     res.status(204).end();
+// });
 
 
-userController.patch('/:id', checkId, async (req,res)=> {
-    const validation = userPatchValidation.validate(req.body, {abortEarly:false});
-    if(validation.error) {
-        res.status(400).json(validation.error);
-        return;
-    }
-    await userRepository.update(req.params.id, req.body);
-    res.json(req.body);
-});
+// userController.patch('/:id', checkId, async (req,res)=> {
+//     const validation = userPatchValidation.validate(req.body, {abortEarly:false});
+//     if(validation.error) {
+//         res.status(400).json(validation.error);
+//         return;
+//     }
+//     await userRepository.update(req.params.id, req.body);
+//     res.json(req.body);
+// });
 
 
 const userValidation = Joi.object({  
         name: Joi.string().required(),
-        demail: Joi.string().required(),
+        email: Joi.string().required(),
         password: Joi.string().required(),
     
 });
@@ -59,7 +59,7 @@ const userValidation = Joi.object({
 
 const userPatchValidation = Joi.object({
     name: Joi.string().required(),
-    demail: Joi.string().required(),
+    email: Joi.string().required(),
     password: Joi.string().required(),
 
 });

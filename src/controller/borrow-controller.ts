@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { /borrowRepository } from "../repository/borrow-repository";
+import { borrowRepository } from "../repository/borrow-repository";
 import { checkId } from "../middleware";
 import Joi from "joi";
-import passport from "passport";
-import { borrowRepository } from "../repository/borrow-repository";
+import { Borrow } from "../entities";
+// import passport from "passport";
+
 
 
 export const borrowController = Router();
@@ -23,14 +24,16 @@ borrowController.get('/:id', checkId, async (req,res) => {
     res.json(borrow);
 });
 
-borrowController.post('/', async (req,res) => {
+borrowController.post('/:id', async (req,res) => {
     const borrow = req.body;
-    const {error} = borrowValidation.validate(borrow);
+    const {error, value} = borrowValidation.validate(borrow);
+    console.log(borrow, value);
+    
     if(error) {
         res.status(400).json(error);
         return;
     }
-    await borrowRepository.persist(borrow);
+    // await borrowRepository.persist(borrow);
     res.status(201).json(borrow);
 });
 
@@ -51,34 +54,32 @@ borrowController.patch('/:id', checkId, async (req,res)=> {
 });
 
 
-const borrowValidation = Joi.object({
+const borrowValidation = Joi.object<Borrow>({
     borrowDate: Joi.date(),
-    returnDate: Joi.date(),
-    borrowDate: Joi.date(),   
-    borrower: Joi.object({
-        name: Joi.string().required(),
-        email: Joi.string().required(),
-        password: Joi.string().required()
-    }).required(),
-    object: Joi.object({
-        title: Joi.string().required(),
-        description: Joi.string().required(),
-        category: Joi.string().required(),
-        owner: Joi.string().required()
-    }).required(),
+    // returnDate: Joi.date(), 
+    // borrower: Joi.object({
+    //     name: Joi.string().required(),
+    //     email: Joi.string().required(),
+    //     password: Joi.string().required()
+    // }).required(),
+    // objet: Joi.object({
+    //     title: Joi.string().required(),
+    //     description: Joi.string().required(),
+    //     category: Joi.string().required(),
+    //     owner: Joi.string().required()
+    // }).required(),
 });
 
 
 const borrowPatchValidation = Joi.object({
     borrowDate: Joi.date(),
-    returnDate: Joi.date(),
-    borrowDate: Joi.date(),   
+    returnDate: Joi.date(),  
     borrower: Joi.object({
         name: Joi.string().required(),
         email: Joi.string().required(),
         password: Joi.string().required()
     }).required(),
-    object: Joi.object({
+    objet: Joi.object({
         title: Joi.string().required(),
         description: Joi.string().required(),
         category: Joi.string().required(),

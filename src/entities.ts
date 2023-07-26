@@ -5,12 +5,17 @@ export interface User {
     password:string;
 }
 
-export interface Object {
+export interface Objet {
     _id?:any;
     title:string;
     description:string;
+    
     category:string;
-    owner:User;
+    owner:{
+        _id:any;
+        name:string;
+    };
+
 }
 
 export interface Borrow {
@@ -18,7 +23,10 @@ export interface Borrow {
     borrowDate: Date;
     returnDate: Date;
     requestDate: Date;
-    borrower:User;
-    object:Object;
+    borrower:{
+        _id:any;
+        name:string;
+    };
+    objet:Objet;
     
 }
