@@ -63,13 +63,18 @@ const borrowValidation = Joi.object<Borrow>({
     borrower: Joi.object({
         name: Joi.string().required(),
         email: Joi.string().required(),
+        _id: Joi.string()
         // password: Joi.string().required()
     }).required(),
     objet: Joi.object({
         title: Joi.string().required(),
         description: Joi.string().required(),
         category: Joi.string().required(),
-        // owner: Joi.string().required()
+        _id: Joi.string(),
+        owner: Joi.object({
+            name: Joi.string(),
+            _id: Joi.string()
+        })
     }).required(),
 });
 
